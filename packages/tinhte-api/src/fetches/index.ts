@@ -85,7 +85,7 @@ const fetchesInit = (api: Api, internalApi: ApiInternal): Fetches => {
         return await response.json()
           .catch((reason) => {
             internalApi.log('Fetch %s and could not parse json: %s', url, reason.message)
-            throw reason
+            return new Error('Could not parse json')
           })
       })
         .then((json) => {
@@ -118,8 +118,6 @@ const fetchesInit = (api: Api, internalApi: ApiInternal): Fetches => {
           internalApi.log('Fetched and parsed %s successfully, total=%d', url, fetchCount)
 
           return json
-        }).catch(reason => {
-          throw reason
         })
     }
 
