@@ -118,6 +118,8 @@ const fetchesInit = (api: Api, internalApi: ApiInternal): Fetches => {
           internalApi.log('Fetched and parsed %s successfully, total=%d', url, fetchCount)
 
           return json
+        }).catch(reason => {
+          throw reason
         })
     }
 
